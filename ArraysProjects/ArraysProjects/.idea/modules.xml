@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ArraysForSalesProject/ArraysForSalesProject.iml" filepath="$PROJECT_DIR$/ArraysForSalesProject/ArraysForSalesProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ArraysForShoppingCartProject/ArraysForShoppingCartProject.iml" filepath="$PROJECT_DIR$/ArraysForShoppingCartProject/ArraysForShoppingCartProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ArraysProjects.iml" filepath="$PROJECT_DIR$/.idea/ArraysProjects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ShoppingCartWithArrayList/ShoppingCartWithArrayList.iml" filepath="$PROJECT_DIR$/ShoppingCartWithArrayList/ShoppingCartWithArrayList.iml" />
+    </modules>
+  </component>
+</project>
