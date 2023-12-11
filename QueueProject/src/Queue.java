@@ -4,6 +4,7 @@ public class Queue {
     Application head;
     Application tail;
     int endedApplication;
+
     Queue() {
         this.head = this.tail = null;
         this.endedApplication = 0;

@@ -3,15 +3,10 @@ import java.util.Random;
 
 public class QueueApp {
     public static void main(String[] args) {
-        System.out.println("Моделирование 1-й очереди:");
-        double workTime1 = OneQueue();
-        System.out.println("------------------------------------------------------------------------------------");
-        System.out.println("Моделирование 2-х очередей:");
-        double workTime2 = TwoQueue();
-        System.out.println("\nДве очереди быстрее одной на " + (workTime1 - workTime2)/workTime2*100 + " процентов");
-    }
-    static double OneQueue() {
         Random random = new Random();
+        Queue queue = new Queue();
+        Queue queue2 = new Queue();
+        Queue queue3 = new Queue();
         int year = 2023;
         int month = 10;
         int day = 1;
@@ -19,8 +14,13 @@ public class QueueApp {
         int minute = 0;
         int second = 0;
 
-        Queue queue = new Queue();
-        double timeInQALL = 0;  // Общее время в очереди (в секундах)
+        double workTime1 = OneQueue(queue, random, year, month, day, hour, minute, second);
+        double workTime2 = TwoQueue(queue2, queue3, random, year, month, day, hour, minute, second);
+        System.out.println("\nДве очереди быстрее одной на " + (workTime1 - workTime2)/workTime2*100 + " процентов");
+    }
+    static double OneQueue(Queue queue, Random random, int year, int month, int day, int hour, int minute, int second) {
+        System.out.println("Моделирование 1-й очереди:");
+        double timeInQALL = 0; // Общее время в очереди (в секундах)
         double workTime = 0;
 
         for (int i = 0; i <= 1000; i++) {
@@ -33,7 +33,8 @@ public class QueueApp {
 
             LocalDateTime time_in = LocalDateTime.of(year, month, day, hour, minute, second);
 
-            int timeInQ = random.nextInt(60, 300); // Время в очереди 1 заявки (в секундах)
+            // Время в очереди 1 заявки (в секундах)
+            int timeInQ = random.nextInt(60, 300);
             second += timeInQ;
 
             // Блок условий на проверку корректности отображения времени
@@ -58,13 +59,12 @@ public class QueueApp {
                 month = 1;
             }
 
-            double timeInOA = random.nextDouble(30, 250); // Время обработки заявки в терминале
+            // Время обработки заявки в терминале
+            double timeInOA = random.nextDouble(30, 250);
 
-            queue.pop_front(); // Выход заявки из очереди
             LocalDateTime time_out = LocalDateTime.of(year, month, day, hour, minute, second);
 
             queue.push_back(i, time_in, time_out);
-
             timeInQALL += timeInQ;
 
             workTime += timeInOA + interval;
@@ -72,21 +72,11 @@ public class QueueApp {
             queue.endedApplication++;
         }
         System.out.println("Общее время моделирования: " + workTime + " секунд"); // Общее время моделирования в секундах
+        System.out.println("------------------------------------------------------------------------------------");
         return workTime;
     }
-    static double TwoQueue() {
-        Random random = new Random();
-
-        int year = 2023;
-        int month = 10;
-        int day = 1;
-        int hour = 1;
-        int minute = 0;
-        int second = 0;
-
-        Queue queue1 = new Queue();
-        Queue queue2 = new Queue();
-
+    static double TwoQueue(Queue queue1, Queue queue2, Random random, int year, int month, int day, int hour, int minute, int second) {
+        System.out.println("Моделирование 2-х очередей:");
         double timeInQueue1 = 0; // Общее время в очереди 1 (в секундах)
         double timeInQueue2 = 0; // Общее время в очереди 2 (в секундах)
         double workTime1 = 0;
